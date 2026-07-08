@@ -124,9 +124,9 @@ class RiskClassifierInput(SubagentInput):
 class RiskClassifierOutput(SubagentOutput):
     """What the risk_classifier produces.
 
-    `applicable_article` is the EU AI Act hook (e.g. '6(1)(a)') that the
-    classifier identified; `rationale` carries the LLM's reasoning for audit.
-    The orchestrator reads `tier` to decide whether to route onward to the
+    `applicable_pathway` is the EU AI Act hook (e.g. '6(1)(a)') that the
+    classifier identified; `reasoning` carries the LLM's reasoning for audit.
+    The orchestrator reads `risk_tier` to decide whether to route onward to the
     compliance_assessor.
     """
 
@@ -167,7 +167,7 @@ class Obligation(BaseModel):
 class ComplianceAssessorOutput(SubagentOutput):
     """What the compliance_assessor produces: the routed obligation set."""
 
-    tier: RiskTier
+    risk_tier: RiskTier
     applicable_article: str
     obligations: list[Obligation]
     summary: str
